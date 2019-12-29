@@ -37,7 +37,7 @@ class SendSampleMailController extends ApiController
     private function sendAllEmails()
     {
         User::select('id', 'name', 'email')
-            ->limit(9)
+            ->limit(100)
             ->get()
             ->each(function ($user, $key) {
                 SendSampleMail::dispatch($user, ++$key)->onQueue('emails');
